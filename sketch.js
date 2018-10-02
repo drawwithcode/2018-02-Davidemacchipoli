@@ -5,7 +5,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     angleMode(DEGREES);
     strokeWeight(2);
-    frameRate(30);
+    frameRate(20);
 
 
 }
@@ -42,27 +42,33 @@ function draw() {
           }
     };
 
-
+push();
     if (mouseIsPressed && mouseX <= width/2) {
       for (var i = 0; i <= 180; i = i + 2) {
         stroke(mouseX*0.15,14,155);
+        rotate(frameCount/160*-1/3*cos(i)*sin(i));
           line(width/2+diametro/2, height/2,
               width/2+diametro/2-(diametro*cos(i)*cos(i)),
               height/2-(diametro*cos(i)*sin(i)));
       };
-
+pop();
     }
     else if (mouseIsPressed && mouseX >= width/2)
     {
 
 
+push();
     for (var i = 0; i <= 180; i = i + 5) {
-      stroke(0.37*mouseX,145,155);
-        line(width/2+diametro/2, height/2,
+      //stroke(0.37*mouseX,145,155);
+      stroke(lerpColor(color('#ea0043'), color('#0fefca'), frameCount/520));
+             rotate(frameCount/80*cos(i)*sin(i));
+            line(width/2+diametro/2, height/2,
             width/2+diametro/2-(diametro*cos(i)*cos(i)),
             height/2-(diametro*cos(i)*sin(i)));
           }
     };
+pop();
+
 
 strokeWeight(1);
     textSize(26);
